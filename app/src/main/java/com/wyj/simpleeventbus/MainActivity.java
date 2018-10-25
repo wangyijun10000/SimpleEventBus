@@ -5,6 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 
+/**
+ * Created by wyj on 2018/10/25.
+ */
 public class MainActivity extends AppCompatActivity {
     private TextView mMessageTv;
 
@@ -25,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Subscribe
-    public void updateMessage(Message message) {
+    public void onReceive(Message message) {
         mMessageTv.append("接收到一条消息：" + message.getText());
     }
 

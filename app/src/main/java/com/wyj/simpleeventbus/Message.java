@@ -1,5 +1,8 @@
 package com.wyj.simpleeventbus;
 
+/**
+ * Created by wyj on 2018/10/25.
+ */
 public class Message {
 
     private String text;

@@ -7,9 +7,13 @@ import java.util.Map;
 
 /**
  * 仿EventBus观察者模式
+ * Created by wyj on 2018/10/25.
  */
 public class EventBus {
 
+    /**
+     * 保存订阅类
+     */
     private HashMap<Class<?>, Object> subscriptionsByEventType;
 
     public EventBus() {
@@ -20,14 +24,29 @@ public class EventBus {
         static EventBus INSTANCE = new EventBus();
     }
 
+    /**
+     * 获取默认实现
+     *
+     * @return
+     */
     public static EventBus getDefault() {
         return EventBus.InstanceHolder.INSTANCE;
     }
 
+    /**
+     * 订阅
+     *
+     * @param o
+     */
     public void register(Object o) {
         subscriptionsByEventType.put(o.getClass(), o);
     }
 
+    /**
+     * 取消订阅
+     *
+     * @param o
+     */
     public void unregister(Object o) {
         if (!subscriptionsByEventType.isEmpty()) {
             subscriptionsByEventType.remove(o.getClass());
@@ -63,6 +82,11 @@ public class EventBus {
         }
     }
 
+    /**
+     * 发送广播
+     *
+     * @param event
+     */
     public void post(Object event) {
         Iterator<Map.Entry<Class<?>, Object>> iterator = subscriptionsByEventType.entrySet().iterator();
         while (iterator.hasNext()) {
